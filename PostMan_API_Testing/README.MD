@@ -7,11 +7,10 @@
 
 ## Required Software to Install:
 - nodeJS - Link to Download: "https://nodejs.org/en/download"
-To confirm nodeJS installation - Open Command Prompt and type the following command
+- To confirm nodeJS installation - Open Command Prompt and type the following command
 ```
 node --version
 ```
-
 - PostMan - Link to Download: "https://www.postman.com/downloads/"
 
 ## Instructions to Run the Code:
