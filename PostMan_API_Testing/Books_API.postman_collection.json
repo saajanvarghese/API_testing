@@ -1,0 +1,222 @@
+{
+	"info": {
+		"_postman_id": "5bbf5365-ed61-4bd2-9220-fb58d02850fd",
+		"name": "Books_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39895107"
+	},
+	"item": [
+		{
+			"name": "Post Books",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json(); // Parse the JSON response\r",
+							"if (response.id) {\r",
+							"    pm.environment.set(\"dynamicId\", response.id); // Save dynamicId to environment\r",
+							"    console.log(\"Dynamic ID saved: \", response.id); // Debug log\r",
+							"} else {\r",
+							"    console.error(\"ID not found in POST response\");\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"author\": \"J.K. Rowling\",\r\n        \"category\": \"Fantasy\",\r\n        \"price\": 19.99,\r\n        \"title\": \"Harry Potter and the Chamber of Secrets\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Books",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const dynamicId = pm.environment.get(\"dynamicId\");\r",
+							"console.log(\"Dynamic ID in Pre-request Script: \", dynamicId);\r",
+							"pm.test(\"Dynamic ID is defined\", function () {\r",
+							"    pm.expect(dynamicId).to.exist;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.test(\"Dynamic ID exists in environment\", function () {\r",
+							"    const dynamicId = pm.environment.get(\"dynamicId\");\r",
+							"    console.log(\"Dynamic ID in GET Pre-request: \", dynamicId); // Debug log\r",
+							"    pm.expect(dynamicId).to.exist; // Assert that dynamicId is defined\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/books/{{dynamicId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books",
+						"{{dynamicId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Books",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"PUT Request successful\", function () {\r",
+							"    pm.response.to.have.status(200); // Validate success\r",
+							"});\r",
+							"\r",
+							"// Parse the response\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"// Get the value of the `updatedTitle` variable\r",
+							"const updatedTitle = pm.environment.get(\"updatedTitle\");\r",
+							"\r",
+							"// Test that the response status is 200\r",
+							"pm.test(\"PUT Request successful\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Test that the title in the response matches the updated title\r",
+							"pm.test(\"Title updated successfully\", function () {\r",
+							"    pm.expect(response.title).to.eql(updatedTitle);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.test(\"Dynamic ID exists in environment\", function () {\r",
+							"    pm.expect(pm.environment.get(\"dynamicId\")).to.exist;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"author\": \"J.K. Rowling\",\r\n        \"category\": \"Fantasy\",\r\n        \"price\": 19.99,\r\n        \"title\": \"{{updatedTitle}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/books/{{dynamicId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books",
+						"{{dynamicId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Book",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.test(\"Dynamic ID exists in environment\", function () {\r",
+							"    pm.expect(pm.environment.get(\"dynamicId\")).to.exist;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"DELETE Request successful\", function () {\r",
+							"    pm.response.to.have.status(200); // Validate deletion\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
