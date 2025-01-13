@@ -23,7 +23,6 @@ npm install -g json-server
 ```
 json-server --version
 ```
-
 - Copy-Paste books.json file to a directory and Open Command Prompt in the same Directory.
 
 - Run the jsonServer using the following Command
