@@ -69,10 +69,8 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"const dynamicId = pm.environment.get(\"dynamicId\");\r",
-							"console.log(\"Dynamic ID in Pre-request Script: \", dynamicId);\r",
-							"pm.test(\"Dynamic ID is defined\", function () {\r",
-							"    pm.expect(dynamicId).to.exist;\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
 							"});"
 						],
 						"type": "text/javascript",
@@ -83,11 +81,7 @@
 					"listen": "prerequest",
 					"script": {
 						"exec": [
-							"pm.test(\"Dynamic ID exists in environment\", function () {\r",
-							"    const dynamicId = pm.environment.get(\"dynamicId\");\r",
-							"    console.log(\"Dynamic ID in GET Pre-request: \", dynamicId); // Debug log\r",
-							"    pm.expect(dynamicId).to.exist; // Assert that dynamicId is defined\r",
-							"});\r",
+							"\r",
 							""
 						],
 						"type": "text/javascript",
@@ -99,15 +93,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/books/{{dynamicId}}",
+					"raw": "http://localhost:3000/books",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"books",
-						"{{dynamicId}}"
+						"books"
 					]
 				}
 			},
@@ -215,6 +208,50 @@
 			"request": {
 				"method": "DELETE",
 				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get Single Book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"const dynamicId = pm.environment.get(\"dynamicId\");\r",
+							"console.log(\"Dynamic ID in Pre-request Script: \", dynamicId);\r",
+							"pm.test(\"Dynamic ID is defined\", function () {\r",
+							"    pm.expect(dynamicId).to.exist;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/books/{{dynamicId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books",
+						"{{dynamicId}}"
+					]
+				}
 			},
 			"response": []
 		}

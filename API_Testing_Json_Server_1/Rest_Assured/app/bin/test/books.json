@@ -1,0 +1,34 @@
+{
+    "books": [
+      {
+        "author": "George Orwell",
+        "category": "Fiction",
+        "price": 9.99,
+        "title": "1984"
+      },
+      {
+        "author": "Harper Lee",
+        "category": "Classic",
+        "price": 7.99,
+        "title": "To Kill a Mockingbird"
+      },
+      {
+        "author": "J.K. Rowling",
+        "category": "Fantasy",
+        "price": 19.99,
+        "title": "Harry Potter and the Sorcerer's Stone"
+      },
+      {
+        "author": "Yuval Noah Harari",
+        "category": "Non-Fiction",
+        "price": 14.99,
+        "title": "Sapiens: A Brief History of Humankind"
+      },
+      {
+        "author": "Jane Austen",
+        "category": "Romance",
+        "price": 8.49,
+        "title": "Pride and Prejudice"
+      }
+    ]
+  }
