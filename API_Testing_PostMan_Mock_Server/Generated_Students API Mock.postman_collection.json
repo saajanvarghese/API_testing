@@ -1,0 +1,193 @@
+{
+	"info": {
+		"_postman_id": "5a086f9c-3edf-4d04-a5ca-d1e1e354b8a0",
+		"name": "Students API Mock",
+		"description": "Mock server for students' data",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39895107"
+	},
+	"item": [
+		{
+			"name": "Get All Students",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{mock_base_url}}/students",
+					"host": [
+						"{{mock_base_url}}"
+					],
+					"path": [
+						"students"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Mock Response - All Students",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mock_base_url}}/students",
+							"host": [
+								"{{mock_base_url}}"
+							],
+							"path": [
+								"students"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "JSON",
+					"header": [],
+					"cookie": [],
+					"body": "{\"students\":[{\"name\":\"Alice Johnson\",\"age\":22,\"gender\":\"Female\",\"grade\":\"First Class\",\"course\":\"BCA\"},{\"name\":\"Bob Smith\",\"age\":21,\"gender\":\"Male\",\"grade\":\"Second Class\",\"course\":\"B.Tech IT\"},{\"name\":\"Charlie Davis\",\"age\":23,\"gender\":\"Male\",\"grade\":\"First Class\",\"course\":\"M.Sc Mathematics\"},{\"name\":\"Diana Lopez\",\"age\":20,\"gender\":\"Female\",\"grade\":\"First Class\",\"course\":\"B.Sc Physics\"},{\"name\":\"Ethan Brown\",\"age\":24,\"gender\":\"Male\",\"grade\":\"First Class\",\"course\":\"M.Sc Chemistry\"}]}"
+				}
+			]
+		},
+		{
+			"name": "Add a Student",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"Cario Sweet\",\"age\":25,\"gender\":\"Female\",\"grade\":\"First Class\",\"course\":\"M.A English Literature\"}"
+				},
+				"url": {
+					"raw": "{{mock_base_url}}/students",
+					"host": [
+						"{{mock_base_url}}"
+					],
+					"path": [
+						"students"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Mock Response - Add Student",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{mock_base_url}}/students",
+							"host": [
+								"{{mock_base_url}}"
+							],
+							"path": [
+								"students"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "JSON",
+					"header": [],
+					"cookie": [],
+					"body": "{\"message\":\"Student added successfully!\",\"student\":{\"name\":\"Cario Sweet\",\"age\":25,\"gender\":\"Female\",\"grade\":\"First Class\",\"course\":\"M.A English Literature\"}}"
+				}
+			]
+		},
+		{
+			"name": "Update a Student",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"Winnie\",\"age\":24,\"gender\":\"Female\",\"grade\":\"First Class\",\"course\":\"M.Sc Physics\"}"
+				},
+				"url": {
+					"raw": "{{mock_base_url}}/students/1",
+					"host": [
+						"{{mock_base_url}}"
+					],
+					"path": [
+						"students",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Mock Response - Update Student",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{mock_base_url}}/students/1",
+							"host": [
+								"{{mock_base_url}}"
+							],
+							"path": [
+								"students",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "JSON",
+					"header": [],
+					"cookie": [],
+					"body": "{\"message\":\"Student updated successfully!\",\"student\":{\"id\":1,\"name\":\"Winnie\",\"age\":24,\"gender\":\"Female\",\"grade\":\"First Class\",\"course\":\"BCA\"}}"
+				}
+			]
+		},
+		{
+			"name": "Delete a Student",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{mock_base_url}}/students/1",
+					"host": [
+						"{{mock_base_url}}"
+					],
+					"path": [
+						"students",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Mock Response - Delete Student",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{mock_base_url}}/students/1",
+							"host": [
+								"{{mock_base_url}}"
+							],
+							"path": [
+								"students",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "JSON",
+					"header": [],
+					"cookie": [],
+					"body": "{\"message\":\"Student deleted successfully!\",\"id\":1}"
+				}
+			]
+		}
+	]
+}
