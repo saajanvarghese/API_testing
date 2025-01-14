@@ -1,0 +1,376 @@
+{
+	"info": {
+		"_postman_id": "8b02c578-4996-447d-bc6c-bb86a17b6153",
+		"name": "Students API Mock",
+		"description": "Mock server for students' data",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39895107"
+	},
+	"item": [
+		{
+			"name": "Get All Students",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{mock_base_url}}/students",
+					"host": [
+						"{{mock_base_url}}"
+					],
+					"path": [
+						"students"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Mock Response - All Students",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mock_base_url}}/students",
+							"host": [
+								"{{mock_base_url}}"
+							],
+							"path": [
+								"students"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "JSON",
+					"header": [],
+					"cookie": [],
+					"body": "{\"students\":[{\"name\":\"Alice Johnson\",\"age\":22,\"gender\":\"Female\",\"grade\":\"First Class\",\"course\":\"BCA\"},{\"name\":\"Bob Smith\",\"age\":21,\"gender\":\"Male\",\"grade\":\"Second Class\",\"course\":\"B.Tech IT\"},{\"name\":\"Charlie Davis\",\"age\":23,\"gender\":\"Male\",\"grade\":\"First Class\",\"course\":\"M.Sc Mathematics\"},{\"name\":\"Diana Lopez\",\"age\":20,\"gender\":\"Female\",\"grade\":\"First Class\",\"course\":\"B.Sc Physics\"},{\"name\":\"Ethan Brown\",\"age\":24,\"gender\":\"Male\",\"grade\":\"First Class\",\"course\":\"M.Sc Chemistry\"}]}"
+				}
+			]
+		},
+		{
+			"name": "Add a Student",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"test response body\", function () {\r",
+							"     pm.expect(pm.response.json()).to.be.an('object');\r",
+							"     pm.expect(pm.response.json().message).to.exist;\r",
+							"     pm.expect(pm.response.json().student).to.be.an('object');\r",
+							"     pm.expect(pm.response.json().student.name).to.exist;\r",
+							"     pm.expect(pm.response.json().student.age).to.be.a('number');\r",
+							"     pm.expect(pm.response.json().student.gender).to.exist;\r",
+							"     pm.expect(pm.response.json().student.grade).to.exist;\r",
+							"     pm.expect(pm.response.json().student.course).to.exist;\r",
+							"\r",
+							"     pm.expect(pm.response.json().student.name).to.equal(\"Cario Sweet\");\r",
+							"     pm.expect(pm.response.json().student.age).to.equal(25);\r",
+							"     pm.expect(pm.response.json().student.gender).to.equal(\"Female\");\r",
+							"     pm.expect(pm.response.json().student.grade).to.equal(\"First Class\");\r",
+							"     pm.expect(pm.response.json().student.course).to.equal(\"M.A English Literature\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"Cario Sweet\",\"age\":25,\"gender\":\"Female\",\"grade\":\"First Class\",\"course\":\"M.A English Literature\"}"
+				},
+				"url": {
+					"raw": "{{mock_base_url}}/students",
+					"host": [
+						"{{mock_base_url}}"
+					],
+					"path": [
+						"students"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Mock Response - Add Student",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{mock_base_url}}/students",
+							"host": [
+								"{{mock_base_url}}"
+							],
+							"path": [
+								"students"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "JSON",
+					"header": [],
+					"cookie": [],
+					"body": "{\"message\":\"Student added successfully!\",\"student\":{\"name\":\"Cario Sweet\",\"age\":25,\"gender\":\"Female\",\"grade\":\"First Class\",\"course\":\"M.A English Literature\"}}"
+				}
+			]
+		},
+		{
+			"name": "Update a Student",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"response body test\", function () {\r",
+							"     pm.expect(pm.response.json()).to.be.an('object');\r",
+							"     pm.expect(pm.response.json().student).to.be.an('object');\r",
+							"     pm.expect(pm.response.json().student).to.have.property('id');\r",
+							"     pm.expect(pm.response.json().student).to.have.property('name');\r",
+							"     pm.expect(pm.response.json().student).to.have.property('age');\r",
+							"     pm.expect(pm.response.json().student).to.have.property('gender');\r",
+							"     pm.expect(pm.response.json().student).to.have.property('grade');\r",
+							"     pm.expect(pm.response.json().student).to.have.property('course');\r",
+							"});\r",
+							"\r",
+							" pm.expect(pm.response.json().student.name).to.equal(\"Winnie\");\r",
+							"     pm.expect(pm.response.json().student.age).to.equal(24);\r",
+							"     pm.expect(pm.response.json().student.gender).to.equal(\"Female\");\r",
+							"     pm.expect(pm.response.json().student.grade).to.equal(\"First Class\");\r",
+							"     pm.expect(pm.response.json().student.course).to.equal(\"BCA\");"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"Winnie\",\"age\":24,\"gender\":\"Female\",\"grade\":\"First Class\",\"course\":\"M.Sc Physics\"}"
+				},
+				"url": {
+					"raw": "{{mock_base_url}}/students/1",
+					"host": [
+						"{{mock_base_url}}"
+					],
+					"path": [
+						"students",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Mock Response - Update Student",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{mock_base_url}}/students/1",
+							"host": [
+								"{{mock_base_url}}"
+							],
+							"path": [
+								"students",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "JSON",
+					"header": [],
+					"cookie": [],
+					"body": "{\"message\":\"Student updated successfully!\",\"student\":{\"id\":1,\"name\":\"Winnie\",\"age\":24,\"gender\":\"Female\",\"grade\":\"First Class\",\"course\":\"BCA\"}}"
+				}
+			]
+		},
+		{
+			"name": "Delete a Student",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{mock_base_url}}/students/1",
+					"host": [
+						"{{mock_base_url}}"
+					],
+					"path": [
+						"students",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Mock Response - Delete Student",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{mock_base_url}}/students/1",
+							"host": [
+								"{{mock_base_url}}"
+							],
+							"path": [
+								"students",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "JSON",
+					"header": [],
+					"cookie": [],
+					"body": "{\"message\":\"Student deleted successfully!\",\"id\":1}"
+				}
+			]
+		},
+		{
+			"name": "Get Single Student",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"test response body\", function () {\r",
+							" pm.expect(pm.response.json().name).to.equal(\"Cario Sweet\");\r",
+							" pm.expect(pm.response.json().age).to.equal(25);\r",
+							" pm.expect(pm.response.json().gender).to.equal(\"Female\");\r",
+							" pm.expect(pm.response.json().grade).to.equal(\"First Class\");\r",
+							" pm.expect(pm.response.json().course).to.equal(\"M.A English Literature\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{mock_base_url}}/students/1",
+					"host": [
+						"{{mock_base_url}}"
+					],
+					"path": [
+						"students",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Mock Response - Student Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mock_base_url}}/students/1",
+							"host": [
+								"{{mock_base_url}}"
+							],
+							"path": [
+								"students",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "JSON",
+					"header": [],
+					"cookie": [],
+					"body": "{\"name\":\"Cario Sweet\",\"age\":25,\"gender\":\"Female\",\"grade\":\"First Class\",\"course\":\"M.A English Literature\"}"
+				},
+				{
+					"name": "Mock Response - Student Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mock_base_url}}/students/1",
+							"host": [
+								"{{mock_base_url}}"
+							],
+							"path": [
+								"students",
+								"1"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "JSON",
+					"header": [],
+					"cookie": [],
+					"body": "Not Found"
+				}
+			]
+		}
+	]
+}
