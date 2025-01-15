@@ -58,17 +58,11 @@ public class BookAPI {
         .statusCode(200)
         .log().all();
 
-        String response_id = response.jsonPath().getString("id");
-        String response_author = response.jsonPath().getString("author");
-        String response_category = response.jsonPath().getString("category");
-        double response_price = response.jsonPath().getDouble("price");
-        String response_title = response.jsonPath().getString("title");
-
-        Assert.assertEquals(id, response_id);
-        Assert.assertEquals(author, response_author);
-        Assert.assertEquals(category, response_category);
-        Assert.assertEquals(price, response_price);
-        Assert.assertEquals(title, response_title);
+        Assert.assertEquals(response.jsonPath().getString("id"), id);
+        Assert.assertEquals(response.jsonPath().getString("author"), author);
+        Assert.assertEquals(response.jsonPath().getString("category"), category);
+        Assert.assertEquals(response.jsonPath().getDouble("price"), price);
+        Assert.assertEquals(response.jsonPath().getString("title"), title);
     }    
 
     @Test(priority = 3)
@@ -93,13 +87,9 @@ public class BookAPI {
         .statusCode(200)
         .log().body();
 
-        String response_id = response.jsonPath().getString("id");
-        double updated_price = response.jsonPath().getDouble("price");
-        String updated_title = response.jsonPath().getString("title");
-
-        Assert.assertEquals(id, response_id);
-        Assert.assertNotEquals(price, updated_price);
-        Assert.assertNotEquals(title, updated_title);
+        Assert.assertEquals(response.jsonPath().getString("id"), id);
+        Assert.assertNotEquals(response.jsonPath().getDouble("price"), price);
+        Assert.assertNotEquals(response.jsonPath().getString("title"), price);
     }
 
     @Test(priority = 4)
