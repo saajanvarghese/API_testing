@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8b02c578-4996-447d-bc6c-bb86a17b6153",
+		"_postman_id": "ffe736d0-ee85-49e7-b4a7-a5e6dffda84f",
 		"name": "Students API Mock",
 		"description": "Mock server for students' data",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -16,7 +16,8 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
-							"});"
+							"});\r",
+							""
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -25,7 +26,16 @@
 			],
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
 				"url": {
 					"raw": "{{mock_base_url}}/students",
 					"host": [
@@ -54,8 +64,13 @@
 					},
 					"status": "OK",
 					"code": 200,
-					"_postman_previewlanguage": "JSON",
-					"header": [],
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
 					"cookie": [],
 					"body": "{\"students\":[{\"name\":\"Alice Johnson\",\"age\":22,\"gender\":\"Female\",\"grade\":\"First Class\",\"course\":\"BCA\"},{\"name\":\"Bob Smith\",\"age\":21,\"gender\":\"Male\",\"grade\":\"Second Class\",\"course\":\"B.Tech IT\"},{\"name\":\"Charlie Davis\",\"age\":23,\"gender\":\"Male\",\"grade\":\"First Class\",\"course\":\"M.Sc Mathematics\"},{\"name\":\"Diana Lopez\",\"age\":20,\"gender\":\"Female\",\"grade\":\"First Class\",\"course\":\"B.Sc Physics\"},{\"name\":\"Ethan Brown\",\"age\":24,\"gender\":\"Male\",\"grade\":\"First Class\",\"course\":\"M.Sc Chemistry\"}]}"
 				}
@@ -87,8 +102,7 @@
 							"\r",
 							"pm.test(\"Status code is 201\", function () {\r",
 							"    pm.response.to.have.status(201);\r",
-							"});\r",
-							""
+							"});"
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -100,6 +114,10 @@
 				"header": [
 					{
 						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
 						"value": "application/json"
 					}
 				],
@@ -135,8 +153,13 @@
 					},
 					"status": "Created",
 					"code": 201,
-					"_postman_previewlanguage": "JSON",
-					"header": [],
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
 					"cookie": [],
 					"body": "{\"message\":\"Student added successfully!\",\"student\":{\"name\":\"Cario Sweet\",\"age\":25,\"gender\":\"Female\",\"grade\":\"First Class\",\"course\":\"M.A English Literature\"}}"
 				}
@@ -168,7 +191,10 @@
 							"     pm.expect(pm.response.json().student.age).to.equal(24);\r",
 							"     pm.expect(pm.response.json().student.gender).to.equal(\"Female\");\r",
 							"     pm.expect(pm.response.json().student.grade).to.equal(\"First Class\");\r",
-							"     pm.expect(pm.response.json().student.course).to.equal(\"BCA\");"
+							"     pm.expect(pm.response.json().student.course).to.equal(\"BCA\");pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -180,6 +206,10 @@
 				"header": [
 					{
 						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
 						"value": "application/json"
 					}
 				],
@@ -217,8 +247,13 @@
 					},
 					"status": "OK",
 					"code": 200,
-					"_postman_previewlanguage": "JSON",
-					"header": [],
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
 					"cookie": [],
 					"body": "{\"message\":\"Student updated successfully!\",\"student\":{\"id\":1,\"name\":\"Winnie\",\"age\":24,\"gender\":\"Female\",\"grade\":\"First Class\",\"course\":\"BCA\"}}"
 				}
@@ -233,7 +268,8 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
-							"});"
+							"});\r",
+							""
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -242,7 +278,16 @@
 			],
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
 				"url": {
 					"raw": "{{mock_base_url}}/students/1",
 					"host": [
@@ -273,8 +318,13 @@
 					},
 					"status": "OK",
 					"code": 200,
-					"_postman_previewlanguage": "JSON",
-					"header": [],
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
 					"cookie": [],
 					"body": "{\"message\":\"Student deleted successfully!\",\"id\":1}"
 				}
@@ -301,8 +351,7 @@
 							"\r",
 							"pm.test(\"Status code is 404\", function () {\r",
 							"    pm.response.to.have.status(404);\r",
-							"});\r",
-							""
+							"});"
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -311,7 +360,16 @@
 			],
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
 				"url": {
 					"raw": "{{mock_base_url}}/students/1",
 					"host": [
@@ -342,8 +400,13 @@
 					},
 					"status": "OK",
 					"code": 200,
-					"_postman_previewlanguage": "JSON",
-					"header": [],
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
 					"cookie": [],
 					"body": "{\"name\":\"Cario Sweet\",\"age\":25,\"gender\":\"Female\",\"grade\":\"First Class\",\"course\":\"M.A English Literature\"}"
 				},
@@ -365,8 +428,13 @@
 					},
 					"status": "Not Found",
 					"code": 404,
-					"_postman_previewlanguage": "JSON",
-					"header": [],
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
 					"cookie": [],
 					"body": "Not Found"
 				}
