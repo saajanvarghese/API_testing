@@ -81,7 +81,6 @@
 					"listen": "prerequest",
 					"script": {
 						"exec": [
-							"\r",
 							""
 						],
 						"type": "text/javascript",
@@ -113,10 +112,6 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"PUT Request successful\", function () {\r",
-							"    pm.response.to.have.status(200); // Validate success\r",
-							"});\r",
-							"\r",
 							"// Parse the response\r",
 							"const response = pm.response.json();\r",
 							"\r",
@@ -207,7 +202,19 @@
 			],
 			"request": {
 				"method": "DELETE",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/books/{{dynamicId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books",
+						"{{dynamicId}}"
+					]
+				}
 			},
 			"response": []
 		},
