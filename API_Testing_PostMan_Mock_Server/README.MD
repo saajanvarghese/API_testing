@@ -3,7 +3,6 @@
 # Description
 - Download Generated_Students API Mock.postman_collection file and Try out refering the Documentation.
 
-- Run the jsonServer in local machine.
 
 ## Required Software to Install:
 - PostMan - Link to Download: "https://www.postman.com/downloads/"

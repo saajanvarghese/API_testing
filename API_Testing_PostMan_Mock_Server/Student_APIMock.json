@@ -1,0 +1,39 @@
+{
+    "students": [
+        {
+            "name": "Alice Johnson",
+            "age": 22,
+            "gender": "Female",
+            "grade": "First Class",
+            "course": "BCA"
+        },
+        {
+            "name": "Bob Smith",
+            "age": 21,
+            "gender": "Male",
+            "grade": "Second Class",
+            "course": "B.Tech IT"
+        },
+        {
+            "name": "Charlie Davis",
+            "age": 23,
+            "gender": "Male",
+            "grade": "First Class",
+            "course": "M.Sc Mathematics"
+        },
+        {
+            "name": "Diana Lopez",
+            "age": 20,
+            "gender": "Female",
+            "grade": "First Class",
+            "course": "B.Sc Physics"
+        },
+        {
+            "name": "Ethan Brown",
+            "age": 24,
+            "gender": "Male",
+            "grade": "First Class",
+            "course": "M.Sc Chemistry"
+        }
+    ]
+}
