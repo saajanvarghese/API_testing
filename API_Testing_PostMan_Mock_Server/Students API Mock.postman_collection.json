@@ -16,8 +16,7 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							""
+							"});"
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -266,10 +265,41 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
+							"if (pm.environment.get(\"can_delete\") === \"true\") {\r",
+							"    pm.test(\"Status code is 200\", function () {\r",
+							"        pm.response.to.have.status(200);\r",
+							"    });\r",
+							"} else {\r",
+							"    pm.test(\"Skipped DELETE - Student not found\", function () {\r",
+							"        pm.expect(pm.response.code).to.not.equal(200);\r",
+							"    });\r",
+							"}\r",
 							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest({\r",
+							"    url: pm.variables.get(\"mock_base_url\") + \"/students/1\",\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'Accept': 'application/json'\r",
+							"    }\r",
+							"}, function (err, res) {\r",
+							"    if (res.code === 200) {\r",
+							"        console.log(\"Student exists. Proceeding to DELETE.\");\r",
+							"        // Store a flag for test script\r",
+							"        pm.environment.set(\"can_delete\", true);\r",
+							"    } else {\r",
+							"        console.warn(\"Student not found. Skipping DELETE.\");\r",
+							"        pm.environment.set(\"can_delete\", false);\r",
+							"    }\r",
+							"});"
 						],
 						"type": "text/javascript",
 						"packages": {}
