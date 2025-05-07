@@ -29,17 +29,17 @@ public class BookAPI {
         data.put("price", price); // "price" declared as global variable
         data.put("title", title); // "title" declared as global variable
 
-       String id = given()
+        Response postResponse = given()
         .contentType("application/json")
         .body(data)
-
         .when()
-        .post("http://localhost:3000/books")
-        .jsonPath().getString("id");
-
-        System.out.println("Generated id is "+id);
-
-        context.setAttribute("id", id);
+        .post("http://localhost:3000/books");  // This is the Running JSON-Server URL
+    
+    postResponse.then().log().all();
+    
+    String id = postResponse.jsonPath().getString("id");
+System.out.println("Generated id is " + id);
+context.setAttribute("id", id); // store for later use
     }
 
     @Test(priority = 2)
