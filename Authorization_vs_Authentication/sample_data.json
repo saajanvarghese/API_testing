@@ -1,0 +1,17 @@
+[ 
+    {
+        "_comment": "Use this Data for Create User",
+        "name": "Pam Beesley",
+        "email": "pam_beesley19@sc.dms",
+        "gender": "female",
+        "status": "active"
+    },
+     {
+        "_comment": "Use this Data for Update User",
+        "name": "Jim Harplet",
+    "email": "jim_harplet25@sc.dms",
+    "gender": "male",
+    "status": "active"
+    }
+
+]
